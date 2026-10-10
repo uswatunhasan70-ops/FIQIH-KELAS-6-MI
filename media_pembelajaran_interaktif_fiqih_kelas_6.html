@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MPI Fiqih Kelas 6 MI - Binatang Halal & Haram (MIS Muhammadiyah Iloponu)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        madrasah: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-fade {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        .animate-glow {
+            animation: pulseGlow 2s infinite ease-in-out;
+        }
+        .animate-marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 25s linear infinite;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        /* Drag & Drop styling */
+        .draggable-item {
+            cursor: grab;
+            touch-action: none;
+        }
+        .draggable-item:active {
+            cursor: grabbing;
+        }
+    </style>
+</head>
+<body class="h-full bg-slate-100 text-slate-800 font-sans flex flex-col justify-between select-none">
+
+    <!-- ================= 1. SPLASH SCREEN ================= -->
+    <div id="splash-screen" class="fixed inset-0 bg-gradient-to-br from-madrasah-900 via-madrasah-800 to-emerald-900 z-50 flex flex-col items-center justify-center p-6 text-white text-center transition-opacity duration-700">
+        <div class="relative z-10 space-y-6 max-w-md mx-auto">
+            <div class="w-24 h-24 sm:w-28 sm:h-28 bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 flex items-center justify-center mx-auto shadow-2xl animate-glow">
+                <i class="fa-solid fa-mosque text-5xl text-amber-300"></i>
+            </div>
+            <div class="space-y-2">
+                <span class="inline-block px-3 py-1 bg-amber-400 text-amber-950 font-bold text-xs rounded-full uppercase tracking-wider">
+                    Kanwil Kemenag Prov. Gorontalo
+                </span>
+                <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">MPI Fiqih Kelas VI</h1>
+                <p class="text-emerald-100 text-xs sm:text-sm font-semibold">MIS Muhammadiyah Iloponu</p>
+                <p class="text-amber-200 text-xs font-medium italic">Pengembang: Suriati I. Masi, S.Pd.I</p>
+            </div>
+            <p class="text-xs text-emerald-200/80 leading-relaxed">
+                Media Pembelajaran Interaktif Fiqih Kelas 6: "Menganalisis Hikmah & Manfaat Binatang Halal dan Haram"
+            </p>
+            <button onclick="dismissSplashScreen()" class="w-full py-3.5 bg-amber-400 hover:bg-amber-300 text-amber-950 font-extrabold text-sm sm:text-base rounded-2xl shadow-xl transition transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
+                <span>MASUK KE PEMBELAJARAN</span>
+                <i class="fa-solid fa-arrow-right-long"></i>
+            </button>
+        </div>
+        <!-- Background Pattern Deco -->
+        <div class="absolute -bottom-10 -right-10 opacity-10 pointer-events-none">
+            <i class="fa-solid fa-kaaba text-9xl"></i>
+        </div>
+    </div>
+
+    <!-- ================= NAVBAR NAVIGATION & MARQUEE ================= -->
+    <header class="bg-gradient-to-r from-madrasah-800 via-madrasah-700 to-emerald-600 text-white shadow-lg sticky top-0 z-40">
+        <!-- Running Text / Teks Berjalan -->
+        <div class="bg-amber-400 text-amber-950 text-xs font-bold py-1 px-4 overflow-hidden shadow-inner border-b border-amber-500 flex items-center gap-2">
+            <span class="bg-amber-950 text-amber-300 px-2 py-0.5 rounded text-[10px] uppercase tracking-wider font-extrabold shrink-0 flex items-center gap-1">
+                <i class="fa-solid fa-bullhorn"></i> INFO PENTING
+            </span>
+            <div class="overflow-hidden w-full relative">
+                <div class="animate-marquee">
+                    📢 Selamat Datang di MPI Fiqih Kelas 6 MIS Muhammadiyah Iloponu | Guru Pengembang: Suriati I. Masi, S.Pd.I | Pelajari Materi Halal-Haram, lakukan simulasi Drag & Drop, dan selesaikan Kuis Formatif (10 Soal) untuk mengukur pemahamanmu! | Utamakan Makanan Halalan Thayyiban sebagai bentuk Cinta Diri & Syukur kepada Allah SWT.
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-col md:flex-row justify-between items-center gap-3">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('cover')">
+                <div class="bg-white/10 p-2 rounded-2xl backdrop-blur-md border border-white/20 shadow-inner">
+                    <i class="fa-solid fa-mosque text-xl text-amber-300"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-sm sm:text-base tracking-tight leading-tight">MPI Fiqih VI - Fase C</h1>
+                    <p class="text-[10px] sm:text-xs text-emerald-100 font-medium">MIS Muhammadiyah Iloponu</p>
+                </div>
+            </div>
+            
+            <nav class="flex flex-wrap gap-1 justify-center bg-black/10 p-1 rounded-xl backdrop-blur-sm border border-white/10 text-xs">
+                <button onclick="switchTab('cover')" id="btn-cover" class="nav-btn px-3 py-1.5 font-semibold rounded-lg transition-all bg-white text-madrasah-800 shadow">
+                    <i class="fa-solid fa-house mr-1"></i> Cover / Menu
+                </button>
+                <button onclick="switchTab('materi')" id="btn-materi" class="nav-btn px-3 py-1.5 font-semibold rounded-lg transition-all text-white hover:bg-white/20">
+                    <i class="fa-solid fa-book-open mr-1"></i> Materi
+                </button>
+                <button onclick="switchTab('konteks')" id="btn-konteks" class="nav-btn px-3 py-1.5 font-semibold rounded-lg transition-all text-white hover:bg-white/20">
+                    <i class="fa-solid fa-map-location-dot mr-1"></i> Konteks Lokal
+                </button>
+                <button onclick="switchTab('game')" id="btn-game" class="nav-btn px-3 py-1.5 font-semibold rounded-lg transition-all text-white hover:bg-white/20">
+                    <i class="fa-solid fa-hand-holding-hand mr-1"></i> Drag & Drop
+                </button>
+                <button onclick="switchTab('kuis')" id="btn-kuis" class="nav-btn px-3 py-1.5 font-semibold rounded-lg transition-all text-white hover:bg-white/20">
+                    <i class="fa-solid fa-clipboard-question mr-1"></i> Kuis Formatif
+                </button>
+                <button onclick="switchTab('panel-guru')" id="btn-panel-guru" class="nav-btn px-3 py-1.5 font-semibold rounded-lg transition-all text-amber-300 hover:bg-white/20">
+                    <i class="fa-solid fa-chalkboard-user mr-1"></i> Panel Guru
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ================= MAIN CONTENT CONTAINER ================= -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-3 sm:p-6 overflow-y-auto custom-scrollbar">
+
+        <!-- ================= 2. TAB COVER & MENU UTAMA ================= -->
+        <section id="tab-cover" class="tab-content animate-fade space-y-6">
+            
+            <!-- Hero Banner & Tombol Mulai Belajar -->
+            <div class="bg-gradient-to-br from-emerald-700 via-madrasah-800 to-madrasah-900 rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden">
+                <div class="max-w-2xl relative z-10 space-y-4">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-400 text-amber-950 shadow-sm">
+                        <i class="fa-solid fa-star"></i> Kurikulum Merdeka Madrasah (Fase C)
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-snug">
+                        Media Pembelajaran Interaktif: Binatang Halal & Haram
+                    </h2>
+                    <p class="text-emerald-100 text-xs sm:text-base leading-relaxed">
+                        Selamat datang di MPI Fiqih Kelas 6. Pelajari prinsip Makanan Halal-Thayyib, klasifikasi hewan, serta hikmah mendalamnya sebagai bentuk rasa syukur kepada Allah SWT dan wujud cinta pada diri (Self-Love).
+                    </p>
+                    <div class="pt-2 flex flex-wrap gap-3">
+                        <button onclick="switchTab('materi')" class="px-6 py-3 bg-amber-400 hover:bg-amber-300 text-amber-950 font-extrabold text-xs sm:text-sm rounded-xl shadow-lg transition transform hover:-translate-y-0.5 flex items-center gap-2">
+                            <i class="fa-solid fa-play"></i>
+                            <span>MULAI BELAJAR MATERI</span>
+                        </button>
+                        <button onclick="switchTab('game')" class="px-5 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm rounded-xl border border-white/30 backdrop-blur-sm transition flex items-center gap-2">
+                            <i class="fa-solid fa-hand-holding-hand"></i>
+                            <span>Aktivitas Drag & Drop</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="absolute -right-8 -bottom-10 opacity-10 pointer-events-none">
+                    <i class="fa-solid fa-scroll text-9xl"></i>
+                </div>
+            </div>
+
+            <!-- Grid Kartu Informasi Utama (CP & TP) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                
+                <!-- Capaian Pembelajaran (CP) -->
+                <div class="bg-white p-5 rounded-3xl shadow-sm border border-slate-200/80 space-y-3 hover:shadow-md transition">
+                    <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-madrasah-700 flex items-center justify-center font-bold text-lg">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-base">Capaian Pembelajaran (CP)</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Peserta didik mampu menganalisis ketentuan binatang halal dan haram, memahami syarat penyembelihan yang syar'i, serta memahami hikmah dan manfaatnya sebagai bentuk syukur dan pembentukan karakter akhlakul karimah.
+                    </p>
+                </div>
+
+                <!-- Tujuan Pembelajaran (TP) -->
+                <div class="bg-white p-5 rounded-3xl shadow-sm border border-slate-200/80 space-y-3 hover:shadow-md transition">
+                    <div class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-lg">
+                        <i class="fa-solid fa-list-check"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-base">Tujuan Pembelajaran (TP)</h3>
+                    <ul class="text-xs text-slate-600 space-y-1.5 list-disc list-inside leading-relaxed">
+                        <li>Mengklasifikasikan jenis-jenis binatang halal dan haram.</li>
+                        <li>Memahami syarat kehalalan bangkai ikan dan belalang.</li>
+                        <li>Menerapkan prinsip Halalan Thayyiban dalam kehidupan sehari-hari.</li>
+                    </ul>
+                </div>
+
+                <!-- Informasi Pembelajaran Modul -->
+                <div class="bg-white p-5 rounded-3xl shadow-sm border border-slate-200/80 space-y-3 hover:shadow-md transition">
+                    <div class="w-10 h-10 rounded-2xl bg-sky-100 text-sky-700 flex items-center justify-center font-bold text-lg">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-base">Informasi Pembelajaran</h3>
+                    <ul class="text-xs text-slate-600 space-y-1.5 list-disc list-inside leading-relaxed">
+                        <li><strong>Mata Pelajaran:</strong> Fiqih Kelas 6 (Fase C)</li>
+                        <li><strong>Alokasi Waktu:</strong> 2 JP (70 Menit)</li>
+                        <li><strong>Moda Akses:</strong> Digital Interactive (Offline Ready)</li>
+                        <li><strong>Target Peserta:</strong> Murid Kelas VI MI</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Bagian Data Murid & Status -->
+            <div class="bg-emerald-50/80 border border-emerald-200/80 rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-2xl bg-madrasah-600 text-white flex items-center justify-center text-xl shadow">
+                        <i class="fa-solid fa-user-graduate"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 text-sm sm:text-base" id="home-student-name">Selamat Datang, Siswa Madrasah!</h4>
+                        <p class="text-xs text-slate-600" id="home-student-status">MIS Muhammadiyah Iloponu • Belum mengisi Kuis Formatif</p>
+                    </div>
+                </div>
+                <button onclick="switchTab('kuis')" class="px-5 py-2.5 bg-madrasah-600 hover:bg-madrasah-700 text-white font-semibold text-xs sm:text-sm rounded-xl transition shadow flex items-center gap-2">
+                    <span>Mulai Kuis Formatif (10 Soal)</span>
+                    <i class="fa-solid fa-play"></i>
+                </button>
+            </div>
+
+            <!-- Footer Meta: Informasi Pengembang & Referensi Keilmuan -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
+                
+                <!-- Informasi Pengembang dengan Foto Profil -->
+                <div class="bg-white p-5 rounded-3xl border border-slate-200/80 text-xs text-slate-600 space-y-3 shadow-sm">
+                    <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-id-card text-madrasah-600 text-base"></i> Informasi Pengembang
+                    </h4>
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 flex flex-col sm:flex-row items-center gap-4">
+                        <!-- Foto Profil Pengembang -->
+                        <div class="relative shrink-0">
+                            <img src="https://placehold.co/120x120/166534/ffffff?text=Profil+Guru" 
+                                 onerror="this.src='https://placehold.co/120x120/166534/ffffff?text=Suriati+I.+Masi'"
+                                 alt="Foto Suriati I. Masi, S.Pd.I" 
+                                 class="w-24 h-24 rounded-2xl object-cover border-2 border-amber-400 shadow-md">
+                            <span class="absolute -bottom-1 -right-1 bg-amber-400 text-amber-950 p-1 rounded-full text-[10px] shadow" title="Pengembang Terverifikasi">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </span>
+                        </div>
+                        <!-- Rincian Identitas -->
+                        <div class="space-y-1 text-xs text-center sm:text-left">
+                            <p class="font-bold text-slate-800 text-sm">Suriati I. Masi, S.Pd.I</p>
+                            <p class="text-madrasah-700 font-semibold">Guru Fiqih / Pengembang MPI</p>
+                            <p class="text-slate-600"><strong>Instansi:</strong> MIS Muhammadiyah Iloponu</p>
+                            <p class="text-slate-500 text-[11px]"><strong>Alamat:</strong> Jl. Runi Hemeto, Gorontalo</p>
+                            <span class="inline-block mt-1 px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded-md text-[10px] font-medium">
+                                Kanwil Kemenag Prov. Gorontalo
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Referensi Keilmuan & Kurikulum -->
+                <div class="bg-white p-5 rounded-3xl border border-slate-200/80 text-xs text-slate-600 space-y-2.5 shadow-sm">
+                    <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-book-bookmark text-amber-600 text-base"></i> Referensi & Dasar Keilmuan
+                    </h4>
+                    <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-600">
+                        <li>KMA Nomor 183 Tahun 2019 tentang Kurikulum PAI dan Bahasa Arab di Madrasah.</li>
+                        <li>Buku Teks Utama Fiqih Kelas VI Madrasah Ibtidaiyah, Kemenag RI.</li>
+                        <li>Al-Qur'anul Karim (Surah Al-Ma'idah & Al-Baqarah) serta Hadis-Hadis Shahih tentang Makanan Halal & Thayyib.</li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= 3. TAB MATERI PEMBELAJARAN ================= -->
+        <section id="tab-materi" class="tab-content hidden animate-fade space-y-6">
+            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-200/80 space-y-6">
+                <div class="border-b border-slate-100 pb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                    <div>
+                        <span class="text-xs font-semibold text-madrasah-700 bg-emerald-50 px-2.5 py-1 rounded-md">Modul Eksplorasi Utama</span>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mt-1">Binatang Halal & Haram dalam Fiqih Islam</h2>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs font-medium text-slate-500 bg-slate-100 px-3 py-1.5 rounded-lg">
+                        <i class="fa-regular fa-clock text-madrasah-600"></i> Alokasi: 2 JP (70 Menit)
+                    </div>
+                </div>
+
+                <!-- Tabs Internal Materi -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Halal Box -->
+                    <div class="bg-emerald-50/60 p-5 rounded-2xl border border-emerald-100 space-y-3">
+                        <h3 class="font-bold text-madrasah-800 text-base flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check text-madrasah-600"></i> Ketentuan Binatang Halal
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                            Binatang halal adalah semua jenis hewan yang diizinkan oleh Allah SWT untuk dikonsumsi dagingnya oleh umat Islam karena memberikan kebaikan dan kesehatan.
+                        </p>
+                        <ul class="space-y-2 text-xs sm:text-sm text-slate-700">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-600 mt-1"></i>
+                                <span><strong>Hewan Darat:</strong> Sapi, kambing, domba, kerbau, ayam, bebek, dan kelinci yang disembelih secara syar'i.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-600 mt-1"></i>
+                                <span><strong>Hewan Air:</strong> Semua jenis ikan dan hewan yang hidup murni di air (laut/sungai) halal bangkainya.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-emerald-600 mt-1"></i>
+                                <span><strong>Bangkai Halal:</strong> Hanya 2 jenis bangkai yang dihalalkan, yaitu Bangkai Ikan dan Bangkai Belalang.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Haram Box -->
+                    <div class="bg-rose-50/60 p-5 rounded-2xl border border-rose-100 space-y-3">
+                        <h3 class="font-bold text-rose-900 text-base flex items-center gap-2">
+                            <i class="fa-solid fa-circle-xmark text-rose-600"></i> Ketentuan Binatang Haram
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                            Binatang haram adalah jenis hewan yang dilarang dikonsumsi karena mengandung najis, racun, keburukan, atau membahayakan fisik dan jiwa.
+                        </p>
+                        <ul class="space-y-2 text-xs sm:text-sm text-slate-700">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-xmark text-rose-600 mt-1"></i>
+                                <span><strong>Haram Zatnya:</strong> Babi dan Anjing (secara eksplisit dilarang).</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-xmark text-rose-600 mt-1"></i>
+                                <span><strong>Binatang Buas:</strong> Bertaring tajam untuk memangsa (singa, harimau, serigala) & burung berkuku tajam (elang).</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-xmark text-rose-600 mt-1"></i>
+                                <span><strong>Binatang Jalalah & Menjijikkan:</strong> Hewan yang hidup dari kotoran atau diperintahkan untuk dibunuh (ular, tikus).</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- Hikmah Self Love -->
+                <div class="bg-amber-50/70 p-5 rounded-2xl border border-amber-200/80 space-y-3">
+                    <h3 class="font-bold text-amber-900 text-base flex items-center gap-2">
+                        <i class="fa-solid fa-heart-pulse text-amber-700"></i> Hikmah & Self-Love (Cinta Pada Diri)
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs sm:text-sm text-slate-700">
+                        <div class="bg-white p-3.5 rounded-xl border border-amber-100 shadow-sm">
+                            <h4 class="font-bold text-amber-800 mb-1">1. Mencegah Penyakit</h4>
+                            <p class="text-xs text-slate-600">Daging halal dan sehat menjauhkan tubuh dari infeksi cacing pita, bakteri berbahaya, serta racun.</p>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-xl border border-amber-100 shadow-sm">
+                            <h4 class="font-bold text-amber-800 mb-1">2. Ketenangan Jiwa</h4>
+                            <p class="text-xs text-slate-600">Makanan yang bersih mencerahkan pikiran, membentuk karakter santun, dan menenangkan hati.</p>
+                        </div>
+                        <div class="bg-white p-3.5 rounded-xl border border-amber-100 shadow-sm">
+                            <h4 class="font-bold text-amber-800 mb-1">3. Kebetulan Doa</h4>
+                            <p class="text-xs text-slate-600">Asupan makanan halal merupakan syarat utama diijabah serta diterimanya ibadah dan doa oleh Allah SWT.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center pt-2">
+                    <button onclick="switchTab('cover')" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold text-xs rounded-xl transition">
+                        <i class="fa-solid fa-arrow-left mr-1"></i> Kembali
+                    </button>
+                    <button onclick="switchTab('konteks')" class="px-5 py-2.5 bg-madrasah-600 hover:bg-madrasah-700 text-white font-semibold text-xs sm:text-sm rounded-xl shadow transition flex items-center gap-2">
+                        <span>Lanjut ke Konteks Lokal</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 4. TAB KONTEKS LOKAL ================= -->
+        <section id="tab-konteks" class="tab-content hidden animate-fade space-y-6">
+            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-200/80 space-y-6">
+                <div class="border-b border-slate-100 pb-4">
+                    <span class="text-xs font-semibold text-sky-700 bg-sky-50 px-2.5 py-1 rounded-md">Integrasi Lingkungan</span>
+                    <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mt-1">Studi Kasus Kontekstual MIS Muhammadiyah Iloponu</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div class="space-y-4 text-xs sm:text-sm text-slate-700 leading-relaxed">
+                        <p>
+                            Madrasah kita, <strong>MIS Muhammadiyah Iloponu</strong>, terletak di ruas jalan utama desa (<strong>Jl. Runi Hemeto, Gorontalo</strong>). Lingkungan sekitar madrasah kaya akan potensi pertanian, peternakan warga (sapi, kambing, ayam), serta pasar segar yang menyajikan hasil tangkapan laut Teluk Tomini.
+                        </p>
+                        <div class="bg-sky-50 p-4 rounded-2xl border border-sky-100 space-y-2">
+                            <h4 class="font-bold text-sky-900 text-xs sm:text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-fish text-sky-600"></i> Aplikasi Prinsip Halalan Thayyiban:
+                            </h4>
+                            <ul class="list-disc list-inside space-y-1 text-xs text-slate-600">
+                                <li>Membeli ikan tuna atau cakalang segar dari pedagang lokal Iloponu (Halal & Thayyib).</li>
+                                <li>Memastikan daging sapi atau ayam penyembelihannya menyebut nama Allah (Tasmiyah).</li>
+                                <li>Menjauhi makanan olahan tanpa label halal MUI / BPJPH Kemenag.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-emerald-600 to-madrasah-800 text-white p-6 rounded-3xl shadow-md space-y-4">
+                        <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-2xl text-amber-300">
+                            <i class="fa-solid fa-house-chimney-crack"></i>
+                        </div>
+                        <h3 class="font-bold text-base sm:text-lg">Tugas Diskusi Kelompok di Kelas</h3>
+                        <p class="text-xs text-emerald-100 leading-relaxed">
+                            Amati warung makan atau kantin di sekitar Jl. Runi Hemeto! Diskusikan bersama kelompokmu: Bagaimana cara memastikan bahwa daging yang dijual terjamin kehalalannya?
+                        </p>
+                        <button onclick="switchTab('game')" class="w-full py-2.5 bg-amber-400 hover:bg-amber-300 text-amber-950 font-bold text-xs rounded-xl shadow transition">
+                            Coba Simulasi Klasifikasi Hewan <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center pt-2">
+                    <button onclick="switchTab('materi')" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold text-xs rounded-xl transition">
+                        <i class="fa-solid fa-arrow-left mr-1"></i> Kembali ke Materi
+                    </button>
+                    <button onclick="switchTab('game')" class="px-5 py-2.5 bg-madrasah-600 hover:bg-madrasah-700 text-white font-semibold text-xs sm:text-sm rounded-xl shadow transition flex items-center gap-2">
+                        <span>Lanjut ke Aktivitas Drag & Drop</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 5. TAB DRAG & DROP ACTIVITY ================= -->
+        <section id="tab-game" class="tab-content hidden animate-fade space-y-6">
+            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-200/80 space-y-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-100 pb-4">
+                    <div>
+                        <span class="text-xs font-semibold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-md">Aktivitas Kinestetik</span>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mt-1">Drag & Drop: Klasifikasi Hewan Halal & Haram</h2>
+                    </div>
+                    <div class="flex items-center gap-3 text-xs font-medium">
+                        <span class="bg-emerald-100 text-madrasah-800 px-3 py-1.5 rounded-lg font-bold">Terklasifikasi: <strong id="drag-score">0</strong> / 6</span>
+                        <button onclick="resetDragActivity()" class="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 rounded-lg text-slate-700 transition">
+                            <i class="fa-solid fa-rotate-right mr-1"></i> Reset
+                        </button>
+                    </div>
+                </div>
+
+                <p class="text-xs sm:text-sm text-slate-600">
+                    Seret (Drag) kartu hewan di bawah ini ke kotak <strong>HALAL</strong> atau kotak <strong>HARAM</strong> yang sesuai! (Pada tablet/layar sentuh, klik kartu hewan lalu pilih kotaknya).
+                </p>
+
+                <!-- Container Kartu Sumber -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                    <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Kartu Hewan (Seret / Sentuh):</h4>
+                    <div id="drag-source-container" class="flex flex-wrap gap-3 min-h-[70px] items-center">
+                        <!-- Diset via JS -->
+                    </div>
+                </div>
+
+                <!-- Target Drop Zones -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
+                    
+                    <!-- Drop Zone Halal -->
+                    <div id="drop-halal" ondragover="allowDrop(event)" ondrop="dropItem(event, 'halal')" class="bg-emerald-50/70 border-2 border-dashed border-emerald-300 rounded-3xl p-5 min-h-[200px] flex flex-col space-y-3 transition">
+                        <div class="flex items-center justify-between border-b border-emerald-200 pb-2">
+                            <span class="font-bold text-emerald-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-600"></i> Kotak HEWAN HALAL
+                            </span>
+                            <span class="text-xs bg-emerald-200 text-emerald-900 px-2 py-0.5 rounded-full font-semibold" id="count-halal">0</span>
+                        </div>
+                        <div id="zone-halal-items" class="flex flex-wrap gap-2 flex-grow items-start content-start">
+                            <p class="text-xs text-emerald-600/70 italic py-8 mx-auto">Letakkan hewan halal di sini...</p>
+                        </div>
+                    </div>
+
+                    <!-- Drop Zone Haram -->
+                    <div id="drop-haram" ondragover="allowDrop(event)" ondrop="dropItem(event, 'haram')" class="bg-rose-50/70 border-2 border-dashed border-rose-300 rounded-3xl p-5 min-h-[200px] flex flex-col space-y-3 transition">
+                        <div class="flex items-center justify-between border-b border-rose-200 pb-2">
+                            <span class="font-bold text-rose-800 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-circle-xmark text-rose-600"></i> Kotak HEWAN HARAM
+                            </span>
+                            <span class="text-xs bg-rose-200 text-rose-900 px-2 py-0.5 rounded-full font-semibold" id="count-haram">0</span>
+                        </div>
+                        <div id="zone-haram-items" class="flex flex-wrap gap-2 flex-grow items-start content-start">
+                            <p class="text-xs text-rose-600/70 italic py-8 mx-auto">Letakkan hewan haram di sini...</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="drag-completion-msg" class="hidden p-4 rounded-2xl bg-emerald-100 border border-emerald-300 text-emerald-900 text-center font-semibold text-sm animate-fade">
+                    🎉 Alhamdulillah! Anda telah berhasil mengklasifikasikan seluruh hewan dengan benar!
+                </div>
+
+                <div class="flex justify-between pt-2">
+                    <button onclick="switchTab('konteks')" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold text-xs rounded-xl transition">
+                        <i class="fa-solid fa-arrow-left mr-1"></i> Kembali
+                    </button>
+                    <button onclick="switchTab('kuis')" class="px-5 py-2.5 bg-madrasah-600 hover:bg-madrasah-700 text-white font-semibold text-xs sm:text-sm rounded-xl transition shadow flex items-center gap-2">
+                        <span>Lanjut ke Kuis Formatif (10 Soal)</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 6. TAB KUIS FORMATIF (10 SOAL) ================= -->
+        <section id="tab-kuis" class="tab-content hidden animate-fade space-y-6">
+            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-200/80 space-y-6">
+                
+                <!-- STEP 1: INPUT IDENTITAS SISWA -->
+                <div id="quiz-login-container" class="space-y-6 py-4">
+                    <div class="text-center space-y-2 max-w-lg mx-auto">
+                        <div class="w-16 h-16 bg-emerald-100 text-madrasah-700 rounded-3xl flex items-center justify-center text-3xl mx-auto shadow-inner">
+                            <i class="fa-solid fa-user-graduate"></i>
+                        </div>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-800">Identitas Peserta Didik</h2>
+                        <p class="text-xs sm:text-sm text-slate-600">
+                            Masukkan nama dan kelas sebelum memulai Evaluasi Formatif Fiqih Kelas 6.
+                        </p>
+                    </div>
+
+                    <div class="max-w-md mx-auto bg-slate-50 p-6 rounded-3xl border border-slate-200 space-y-4 shadow-sm">
+                        <div class="space-y-1.5">
+                            <label class="block text-xs font-bold text-slate-700">Nama Lengkap Siswa:</label>
+                            <input type="text" id="input-student-name" placeholder="Contoh: Ahmad Fauzan" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-madrasah-500 text-sm bg-white">
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="block text-xs font-bold text-slate-700">Kelas / Rombel:</label>
+                            <select id="input-student-class" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-madrasah-500 text-sm bg-white">
+                                <option value="">-- Pilih Kelas --</option>
+                                <option value="Kelas 6A">Kelas 6A</option>
+                                <option value="Kelas 6B">Kelas 6B</option>
+                                <option value="Kelas 6 MIS Muhammadiyah Iloponu">Kelas 6 MIS Muhammadiyah Iloponu</option>
+                            </select>
+                        </div>
+                        <button onclick="startQuizSession()" class="w-full py-3 bg-madrasah-600 hover:bg-madrasah-700 text-white font-bold text-sm rounded-xl shadow transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                            <span>Mulai Mengerjakan Kuis</span>
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEP 2: DISPLAY SOAL BERGANTIAN -->
+                <div id="quiz-main-container" class="hidden space-y-6">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-100 pb-4">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs font-semibold text-madrasah-700 bg-emerald-50 px-2.5 py-1 rounded-md" id="student-badge">Siswa</span>
+                                <span class="text-xs font-medium text-slate-500" id="quiz-type-badge">Pilihan Ganda</span>
+                            </div>
+                            <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mt-1">Evaluasi Kuis Fiqih Fase C</h2>
+                        </div>
+                        <div id="quiz-progress" class="text-xs font-semibold text-slate-700 bg-slate-100 px-3 py-1.5 rounded-lg">
+                            Soal 1 dari 10
+                        </div>
+                    </div>
+
+                    <div class="space-y-5">
+                        <div id="quiz-question-box" class="space-y-3">
+                            <h3 id="quiz-question-title" class="font-bold text-slate-800 text-base sm:text-lg">
+                                Pertanyaan kuis akan dimuat di sini...
+                            </h3>
+                            <div id="quiz-options" class="grid grid-cols-1 gap-3 pt-2">
+                                <!-- Opsi Dinamis -->
+                            </div>
+                        </div>
+
+                        <!-- Tombol Submit PG Kompleks -->
+                        <div id="complex-submit-area" class="hidden pt-2">
+                            <button onclick="submitComplexAnswer()" class="px-6 py-2.5 bg-madrasah-600 hover:bg-madrasah-700 text-white font-semibold text-sm rounded-xl shadow transition">
+                                <i class="fa-solid fa-check mr-1.5"></i> Periksa Jawaban Kompleks
+                            </button>
+                        </div>
+
+                        <!-- Pembahasan / Edukatif Feedback -->
+                        <div id="quiz-explanation" class="hidden p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs sm:text-sm text-slate-700 space-y-2">
+                            <p class="font-bold text-madrasah-800 flex items-center gap-1.5">
+                                <i class="fa-solid fa-circle-info"></i> Pembahasan Edukatif:
+                            </p>
+                            <p id="quiz-explanation-text"></p>
+                        </div>
+
+                        <div class="flex justify-end pt-3">
+                            <button id="quiz-next-btn" onclick="nextQuizQuestion()" class="hidden px-5 py-2.5 bg-madrasah-600 hover:bg-madrasah-700 text-white font-semibold text-sm rounded-xl shadow transition">
+                                Selanjutnya <i class="fa-solid fa-arrow-right ml-1.5"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 3: HASIL KUIS -->
+                <div id="quiz-result" class="hidden text-center space-y-5 py-6">
+                    <div class="w-20 h-20 bg-emerald-100 text-madrasah-600 rounded-full flex items-center justify-center text-4xl mx-auto shadow-inner">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="text-2xl font-bold text-slate-800">Kuis Selesai, Alhamdulillah!</h3>
+                        <p class="text-xs sm:text-sm text-slate-600" id="result-student-info">Nama Siswa - Kelas</p>
+                        <div class="text-3xl font-extrabold text-madrasah-700 pt-2" id="final-score-display">Skor: 100 / 100</div>
+                    </div>
+                    <div class="pt-4 flex justify-center gap-3">
+                        <button onclick="resetQuizSession()" class="px-5 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold text-xs sm:text-sm rounded-xl transition">
+                            <i class="fa-solid fa-rotate-right mr-1.5"></i> Ulangi Kuis
+                        </button>
+                        <button onclick="switchTab('panel-guru')" class="px-5 py-2.5 bg-amber-400 hover:bg-amber-300 text-amber-950 font-bold text-xs sm:text-sm rounded-xl transition shadow">
+                            <i class="fa-solid fa-chalkboard-user mr-1.5"></i> Lihat Panel Guru
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= 7. TAB PANEL GURU ================= -->
+        <section id="tab-panel-guru" class="tab-content hidden animate-fade space-y-6">
+            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-200/80 space-y-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-100 pb-4">
+                    <div>
+                        <span class="text-xs font-semibold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-md">Khusus Pendidik</span>
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-800 mt-1">Panel Guru & Rekap Hasil Evaluasi</h2>
+                    </div>
+                    <button onclick="clearStudentData()" class="px-3 py-1.5 bg-rose-100 hover:bg-rose-200 text-rose-700 rounded-lg text-xs font-semibold transition">
+                        <i class="fa-solid fa-trash mr-1"></i> Bersihkan Data Rekap
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-center">
+                        <p class="text-xs text-slate-500 font-medium">Total Peserta Evaluasi</p>
+                        <p class="text-2xl font-bold text-slate-800 mt-1" id="teacher-total-students">0</p>
+                    </div>
+                    <div class="bg-emerald-50 p-4 rounded-2xl border border-emerald-200 text-center">
+                        <p class="text-xs text-emerald-700 font-medium">Rata-Rata Skor Kelompok</p>
+                        <p class="text-2xl font-bold text-emerald-800 mt-1" id="teacher-avg-score">0 / 100</p>
+                    </div>
+                    <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200 text-center">
+                        <p class="text-xs text-amber-800 font-medium">Status Tuntas (≥70)</p>
+                        <p class="text-2xl font-bold text-amber-900 mt-1" id="teacher-pass-rate">0%</p>
+                    </div>
+                </div>
+
+                <!-- Tabel Rekap Nilai Siswa -->
+                <div class="overflow-x-auto rounded-2xl border border-slate-200">
+                    <table class="w-full text-left text-xs sm:text-sm text-slate-600">
+                        <thead class="bg-slate-100 text-slate-700 uppercase text-[10px] font-bold tracking-wider">
+                            <tr>
+                                <th class="p-3">No</th>
+                                <th class="p-3">Nama Siswa</th>
+                                <th class="p-3">Kelas</th>
+                                <th class="p-3">Skor Akhir</th>
+                                <th class="p-3">Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="teacher-table-body" class="divide-y divide-slate-100">
+                            <tr>
+                                <td colspan="5" class="p-4 text-center text-slate-400 italic">Belum ada data nilai kuis tersimpan.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs text-slate-600 space-y-1">
+                    <p class="font-bold text-slate-700">Catatan Guru Fiqih:</p>
+                    <p>
+                        Data hasil kuis otomatis tersimpan sementara di memori browser lokal (LocalStorage). Guru dapat menggunakan tabel ini untuk penilaian diagnostik atau formatif pembelajaran Fiqih Kelas 6 MI.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-white border-t border-slate-200 py-3 text-center text-xs text-slate-500">
+        <p>&copy; 2026 Kementerian Agama - MIS Muhammadiyah Iloponu (Jl. Runi Hemeto, Gorontalo). Media Pembelajaran Interaktif Fiqih Fase C.</p>
+    </footer>
+
+    <!-- ================= CUSTOM MODAL DIALOG ================= -->
+    <div id="custom-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl p-6 max-w-sm w-full shadow-2xl text-center space-y-4 animate-fade">
+            <div id="modal-icon" class="text-4xl text-madrasah-600">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 id="modal-title" class="font-bold text-lg text-slate-800">Informasi</h3>
+            <p id="modal-message" class="text-xs text-slate-600 leading-relaxed"></p>
+            <button onclick="closeModal()" class="w-full py-2.5 bg-madrasah-600 hover:bg-madrasah-700 text-white font-semibold text-xs rounded-xl transition shadow">
+                Tutup
+            </button>
+        </div>
+    </div>
+
+    <!-- ================= JAVASCRIPT LOGIC ================= -->
+    <script>
+        
+        // --- 1. SPLASH SCREEN LOGIC ---
+        function dismissSplashScreen() {
+            const splash = document.getElementById('splash-screen');
+            splash.classList.add('opacity-0');
+            setTimeout(() => {
+                splash.classList.add('hidden');
+            }, 700);
+        }
+
+        // --- 2. NAVIGATION SPA TAB LOGIC ---
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.nav-btn').forEach(el => {
+                el.classList.remove('bg-white', 'text-madrasah-800', 'shadow');
+                el.classList.add('text-white', 'hover:bg-white/20');
+            });
+
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+            const activeBtn = document.getElementById('btn-' + tabId);
+            if(activeBtn) {
+                activeBtn.classList.remove('text-white', 'hover:bg-white/20');
+                activeBtn.classList.add('bg-white', 'text-madrasah-800', 'shadow');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if(tabId === 'panel-guru') {
+                renderTeacherPanel();
+            }
+        }
+
+        // --- 3. CUSTOM MODAL DIALOG ---
+        function showModal(title, message, type = 'success') {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-message').innerText = message;
+            const iconEl = document.getElementById('modal-icon');
+            if (type === 'success') {
+                iconEl.className = "text-4xl text-madrasah-600";
+                iconEl.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+            } else {
+                iconEl.className = "text-4xl text-rose-600";
+                iconEl.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i>';
+            }
+            document.getElementById('custom-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('custom-modal').classList.add('hidden');
+        }
+
+        // --- 4. DRAG & DROP LOGIC ---
+        const dragAnimalsData = [
+            { id: 'anim-1', name: 'Sapi', type: 'halal', icon: 'fa-cow' },
+            { id: 'anim-2', name: 'Babi', type: 'haram', icon: 'fa-piggy-bank' },
+            { id: 'anim-3', name: 'Ikan Tuna', type: 'halal', icon: 'fa-fish' },
+            { id: 'anim-4', name: 'Anjing', type: 'haram', icon: 'fa-dog' },
+            { id: 'anim-5', name: 'Kambing', type: 'halal', icon: 'fa-sheep' },
+            { id: 'anim-6', name: 'Burung Elang', type: 'haram', icon: 'fa-crow' }
+        ];
+
+        let placedItems = { halal: 0, haram: 0 };
+        let activeTapElement = null;
+
+        function initDragActivity() {
+            placedItems = { halal: 0, haram: 0 };
+            document.getElementById('drag-score').innerText = '0';
+            document.getElementById('count-halal').innerText = '0';
+            document.getElementById('count-haram').innerText = '0';
+            document.getElementById('drag-completion-msg').classList.add('hidden');
+
+            const sourceContainer = document.getElementById('drag-source-container');
+            sourceContainer.innerHTML = '';
+            
+            document.getElementById('zone-halal-items').innerHTML = '<p class="text-xs text-emerald-600/70 italic py-8 mx-auto">Letakkan hewan halal di sini...</p>';
+            document.getElementById('zone-haram-items').innerHTML = '<p class="text-xs text-rose-600/70 italic py-8 mx-auto">Letakkan hewan haram di sini...</p>';
+
+            const shuffled = [...dragAnimalsData].sort(() => Math.random() - 0.5);
+            shuffled.forEach(item => {
+                const el = document.createElement('div');
+                el.id = item.id;
+                el.className = "draggable-item bg-white px-3.5 py-2.5 rounded-xl border border-slate-200 shadow-sm flex items-center gap-2.5 text-xs font-semibold text-slate-700 hover:border-madrasah-500 transition";
+                el.draggable = true;
+                el.setAttribute('data-type', item.type);
+                el.innerHTML = `<i class="fa-solid ${item.icon} text-madrasah-600 text-base"></i><span>${item.name}</span>`;
+                
+                el.addEventListener('dragstart', (e) => {
+                    e.dataTransfer.setData('text/plain', item.id);
+                });
+
+                // Tap handler untuk mobile
+                el.addEventListener('click', () => {
+                    handleTapSelect(el, item);
+                });
+
+                sourceContainer.appendChild(el);
+            });
+        }
+
+        function handleTapSelect(element, item) {
+            activeTapElement = { element, item };
+            showModal("Pilih Kotak Hewan", `Hewan "${item.name}" dipilih. Geser atau tempatkan ke Kotak Halal / Haram.`, "success");
+        }
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function dropItem(ev, targetType) {
+            ev.preventDefault();
+            let id = ev.dataTransfer ? ev.dataTransfer.getData('text/plain') : null;
+            let draggedElement = id ? document.getElementById(id) : (activeTapElement ? activeTapElement.element : null);
+            
+            if (!draggedElement) return;
+
+            const itemType = draggedElement.getAttribute('data-type');
+            const targetZoneItems = document.getElementById(targetType === 'halal' ? 'zone-halal-items' : 'zone-haram-items');
+
+            if (targetZoneItems.querySelector('p')) {
+                targetZoneItems.innerHTML = '';
+            }
+
+            if (itemType === targetType) {
+                draggedElement.className = "bg-emerald-100 text-emerald-900 px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-2 border border-emerald-300";
+                targetZoneItems.appendChild(draggedElement);
+                placedItems[targetType]++;
+                document.getElementById('drag-score').innerText = (placedItems.halal + placedItems.haram);
+                document.getElementById('count-' + targetType).innerText = placedItems[targetType];
+
+                if ((placedItems.halal + placedItems.haram) === dragAnimalsData.length) {
+                    document.getElementById('drag-completion-msg').classList.remove('hidden');
+                }
+            } else {
+                showModal("Kurang Tepat!", "Kategori hewan ini belum sesuai. Coba perhatikan lagi ciri-cirinya!", "error");
+            }
+            activeTapElement = null;
+        }
+
+        function resetDragActivity() {
+            initDragActivity();
+        }
+
+        // --- 5. KUIS FORMATIF LOGIC (10 SOAL BERVARIASI) ---
+        const quizData = [
+            {
+                type: "single",
+                question: "1. Apa hukum asal mengonsumsi binatang darat yang tidak buas dan tidak bertaring menurut syariat Islam?",
+                options: ["Haram dikonsumsi", "Halal dikonsumsi", "Makruh dikonsumsi", "Mubah tanpa syarat"],
+                answer: 1,
+                explanation: "Hukum asal binatang darat yang tidak buas dan tidak bertaring (seperti sapi, kambing, kelinci) adalah halal untuk dikonsumsi selama disembelih secara syar'i."
+            },
+            {
+                type: "complex",
+                question: "2. [Pilihan Ganda Kompleks] Manakah di antara hewan berikut yang termasuk binatang HALAL untuk dikonsumsi? (Pilih dua jawaban yang benar)",
+                options: ["Sapi", "Babi", "Kambing", "Anjing"],
+                answer: [0, 2],
+                explanation: "Sapi dan kambing adalah hewan ternak herbivora yang dihalalkan dalam Al-Qur'an. Babi dan anjing diharamkan."
+            },
+            {
+                type: "tf",
+                question: "3. [Benar / Salah] Semua jenis hewan air (ikan, dll) halal dikonsumsi oleh umat Islam tanpa perlu proses penyembelihan terlebih dahulu.",
+                options: ["Benar", "Salah"],
+                answer: 0,
+                explanation: "Benar, Rasulullah SAW bersabda bahwa laut itu suci airnya dan halal bangkainya (segala hewan air)."
+            },
+            {
+                type: "single",
+                question: "4. Mengapa Allah SWT melarang umat Islam mengonsumsi binatang buas yang bertaring dan burung berkuku tajam?",
+                options: ["Harga mahal", "Daging pahit", "Berdampak buruk pada kesehatan fisik dan tabiat jiwa manusia", "Populasi langka"],
+                answer: 2,
+                explanation: "Larangan ini berkaitan dengan penjagaan diri (self-love). Tabiat buas pada hewan dapat memengaruhi perilaku negatif manusia."
+            },
+            {
+                type: "complex",
+                question: "5. [Pilihan Ganda Kompleks] Ciri-ciri utama binatang yang diharamkan dalam syariat Islam meliputi: (Pilih dua jawaban yang benar)",
+                options: ["Bertaring tajam untuk memangsa", "Memakan kotoran atau bangkai (jalalah)", "Memamah biak rumput dengan tenang", "Herbivora peliharaan yang jinak"],
+                answer: [0, 1],
+                explanation: "Binatang yang bertaring dan binatang jalalah (pemakan kotoran/bangkai) diharamkan karena membawa mudarat."
+            },
+            {
+                type: "tf",
+                question: "6. [Benar / Salah] Burung elang merupakan jenis burung yang halal dikonsumsi karena dagingnya kaya akan protein.",
+                options: ["Benar", "Salah"],
+                answer: 1,
+                explanation: "Salah, burung elang adalah burung pemangsa yang memiliki cakar/kuku tajam untuk mencengkeram, sehingga hukumnya haram."
+            },
+            {
+                type: "single",
+                question: "7. Syarat mutlak agar daging hewan ternak darat halal dikonsumsi oleh umat Islam adalah...",
+                options: ["Direbus 2 jam", "Hewan disembelih dengan menyebut nama Allah (Tasmiyah) secara syar'i", "Dicuci air garam", "Disembelih saat petang"],
+                answer: 1,
+                explanation: "Syarat utama kehalalan daging hewan darat adalah proses penyembelihan dengan menyebut asma Allah (Bismillah)."
+            },
+            {
+                type: "complex",
+                question: "8. [Pilihan Ganda Kompleks] Manakah yang merupakan hikmah utama mengonsumsi makanan halal bagi pelajar madrasah? (Pilih dua jawaban yang benar)",
+                options: ["Menjaga kesehatan tubuh dan metabolisme", "Membuat doa lebih mudah diijabah oleh Allah SWT", "Agar menjadi kaya", "Agar merasa sombong"],
+                answer: [0, 1],
+                explanation: "Makanan halal menyehatkan tubuh dan membersihkan jiwa, serta menjadi kunci utama diterimanya doa."
+            },
+            {
+                type: "tf",
+                question: "9. [Benar / Salah] Daging babi yang dimasak sampai benar-benar matang dan steril dapat berubah status hukumnya menjadi halal.",
+                options: ["Benar", "Salah"],
+                answer: 1,
+                explanation: "Salah, zat babi diharamkan secara mutlak dalam Al-Qur'an terlepas dari cara memasaknya."
+            },
+            {
+                type: "single",
+                question: "10. Sebagai pelajar Kelas 6 MIS Muhammadiyah Iloponu, sikap terbaik dalam memilih makanan sehari-hari adalah...",
+                options: ["Asal enak saja", "Memilih makanan Halalan Thayyiban (halal dan bergizi) serta bersyukur", "Hanya makan makanan impor", "Menghindari semua daging"],
+                answer: 1,
+                explanation: "Pelajar madrasah senantiasa mengamalkan prinsip Halalan Thayyiban sebagai wujud syukur dan cinta pada diri."
+            }
+        ];
+
+        let studentData = { name: '', className: '' };
+        let currentQuizIndex = 0;
+        let quizScore = 0;
+        let selectedOptionIndex = null;
+        let selectedComplexAnswers = [];
+
+        function startQuizSession() {
+            const name = document.getElementById('input-student-name').value.trim();
+            const className = document.getElementById('input-student-class').value;
+
+            if (!name || !className) {
+                showModal("Perhatian", "Silakan masukkan Nama Lengkap dan pilih Kelas Anda terlebih dahulu!", "error");
+                return;
+            }
+
+            studentData.name = name;
+            studentData.className = className;
+            document.getElementById('student-badge').innerText = `${name} (${className})`;
+            document.getElementById('home-student-name').innerText = `Murid: ${name}`;
+            document.getElementById('home-student-status').innerText = `Kelas: ${className} • Siap Mengikuti Kuis`;
+
+            document.getElementById('quiz-login-container').classList.add('hidden');
+            document.getElementById('quiz-main-container').classList.remove('hidden');
+
+            initQuiz();
+        }
+
+        function initQuiz() {
+            currentQuizIndex = 0;
+            quizScore = 0;
+            loadQuizQuestion();
+        }
+
+        function loadQuizQuestion() {
+            selectedOptionIndex = null;
+            selectedComplexAnswers = [];
+            const q = quizData[currentQuizIndex];
+
+            document.getElementById('quiz-progress').innerText = `Soal ${currentQuizIndex + 1} dari ${quizData.length}`;
+            document.getElementById('quiz-question-title').innerText = q.question;
+            document.getElementById('quiz-explanation').classList.add('hidden');
+            document.getElementById('quiz-next-btn').classList.add('hidden');
+            document.getElementById('complex-submit-area').classList.add('hidden');
+
+            const typeBadge = document.getElementById('quiz-type-badge');
+            if (q.type === 'single') typeBadge.innerText = 'Pilihan Ganda';
+            else if (q.type === 'complex') typeBadge.innerText = 'Pilihan Ganda Kompleks (Pilih 2)';
+            else if (q.type === 'tf') typeBadge.innerText = 'Benar / Salah';
+
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+
+            if (q.type === 'single' || q.type === 'tf') {
+                q.options.forEach((opt, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = "w-full text-left p-4 rounded-2xl border border-slate-200 bg-slate-50 hover:bg-emerald-50 hover:border-emerald-300 font-medium text-xs sm:text-sm text-slate-700 transition flex items-center justify-between group";
+                    btn.innerHTML = `<span><strong class="mr-2 text-madrasah-700">${String.fromCharCode(65 + idx)}.</strong> ${opt}</span> <i class="fa-regular fa-circle text-slate-400 group-hover:text-madrasah-600"></i>`;
+                    btn.onclick = () => selectSingleOption(idx, btn);
+                    optionsContainer.appendChild(btn);
+                });
+            } else if (q.type === 'complex') {
+                document.getElementById('complex-submit-area').classList.remove('hidden');
+                q.options.forEach((opt, idx) => {
+                    const label = document.createElement('label');
+                    label.className = "w-full text-left p-4 rounded-2xl border border-slate-200 bg-slate-50 hover:bg-emerald-50 hover:border-emerald-300 font-medium text-xs sm:text-sm text-slate-700 transition flex items-center gap-3 cursor-pointer";
+                    label.innerHTML = `
+                        <input type="checkbox" value="${idx}" class="w-4 h-4 text-madrasah-600 rounded border-slate-300 focus:ring-madrasah-500" onchange="toggleComplexOption(${idx})">
+                        <span><strong class="mr-2 text-madrasah-700">${String.fromCharCode(65 + idx)}.</strong> ${opt}</span>
+                    `;
+                    optionsContainer.appendChild(label);
+                });
+            }
+        }
+
+        function selectSingleOption(selectedIndex, btnElement) {
+            if (selectedOptionIndex !== null) return;
+            selectedOptionIndex = selectedIndex;
+
+            const q = quizData[currentQuizIndex];
+            const optionButtons = document.getElementById('quiz-options').children;
+
+            if (selectedIndex === q.answer) {
+                quizScore += 10;
+                btnElement.className = "w-full text-left p-4 rounded-2xl border border-emerald-300 bg-emerald-50 font-medium text-xs sm:text-sm text-emerald-900 flex items-center justify-between shadow-sm";
+                btnElement.innerHTML = `<span><strong class="mr-2 text-madrasah-700">${String.fromCharCode(65 + selectedIndex)}.</strong> ${q.options[selectedIndex]}</span> <i class="fa-solid fa-circle-check text-madrasah-600 text-lg"></i>`;
+            } else {
+                btnElement.className = "w-full text-left p-4 rounded-2xl border border-rose-300 bg-rose-50 font-medium text-xs sm:text-sm text-rose-900 flex items-center justify-between shadow-sm";
+                btnElement.innerHTML = `<span><strong class="mr-2 text-rose-700">${String.fromCharCode(65 + selectedIndex)}.</strong> ${q.options[selectedIndex]}</span> <i class="fa-solid fa-circle-xmark text-rose-600 text-lg"></i>`;
+
+                const correctBtn = optionButtons[q.answer];
+                if(correctBtn) {
+                    correctBtn.className = "w-full text-left p-4 rounded-2xl border border-emerald-300 bg-emerald-50 font-medium text-xs sm:text-sm text-emerald-900 flex items-center justify-between shadow-sm";
+                }
+            }
+
+            showQuizExplanation(q);
+        }
+
+        function toggleComplexOption(idx) {
+            const indexPos = selectedComplexAnswers.indexOf(idx);
+            if (indexPos > -1) {
+                selectedComplexAnswers.splice(indexPos, 1);
+            } else {
+                selectedComplexAnswers.push(idx);
+            }
+        }
+
+        function submitComplexAnswer() {
+            if (selectedComplexAnswers.length === 0) {
+                showModal("Perhatian", "Silakan pilih minimal satu jawaban terlebih dahulu!", "error");
+                return;
+            }
+
+            const q = quizData[currentQuizIndex];
+            document.getElementById('complex-submit-area').classList.add('hidden');
+
+            const sortedUser = [...selectedComplexAnswers].sort();
+            const sortedCorrect = [...q.answer].sort();
+            const isCorrect = sortedUser.length === sortedCorrect.length && sortedUser.every((val, i) => val === sortedCorrect[i]);
+
+            if (isCorrect) {
+                quizScore += 10;
+                showModal("Hebat!", "Jawaban Pilihan Ganda Kompleks Anda Benar!", "success");
+            } else {
+                showModal("Kurang Tepat", "Jawaban Anda belum sepenuhnya tepat. Silakan simak pembahasan.", "error");
+            }
+
+            showQuizExplanation(q);
+        }
+
+        function showQuizExplanation(q) {
+            const explBox = document.getElementById('quiz-explanation');
+            document.getElementById('quiz-explanation-text').innerText = q.explanation;
+            explBox.classList.remove('hidden');
+            document.getElementById('quiz-next-btn').classList.remove('hidden');
+        }
+
+        function nextQuizQuestion() {
+            currentQuizIndex++;
+            if (currentQuizIndex < quizData.length) {
+                loadQuizQuestion();
+            } else {
+                document.getElementById('quiz-main-container').classList.add('hidden');
+                document.getElementById('quiz-result').classList.remove('hidden');
+                document.getElementById('result-student-info').innerText = `${studentData.name} — ${studentData.className}`;
+                document.getElementById('final-score-display').innerText = `Skor Akhir: ${quizScore} / 100`;
+
+                // Simpan ke LocalStorage
+                saveResultToTeacherPanel(studentData.name, studentData.className, quizScore);
+            }
+        }
+
+        function resetQuizSession() {
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-login-container').classList.remove('hidden');
+            document.getElementById('input-student-name').value = '';
+            document.getElementById('input-student-class').value = '';
+        }
+
+        // --- 6. PANEL GURU LOGIC ---
+        function saveResultToTeacherPanel(name, className, score) {
+            let list = JSON.parse(localStorage.getItem('mpi_fiqih_scores') || '[]');
+            list.push({
+                name,
+                className,
+                score,
+                date: new Date().toLocaleDateString('id-ID')
+            });
+            localStorage.setItem('mpi_fiqih_scores', JSON.stringify(list));
+        }
+
+        function renderTeacherPanel() {
+            let list = JSON.parse(localStorage.getItem('mpi_fiqih_scores') || '[]');
+            const tbody = document.getElementById('teacher-table-body');
+            tbody.innerHTML = '';
+
+            if (list.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="p-4 text-center text-slate-400 italic">Belum ada data nilai kuis tersimpan.</td></tr>';
+                document.getElementById('teacher-total-students').innerText = '0';
+                document.getElementById('teacher-avg-score').innerText = '0 / 100';
+                document.getElementById('teacher-pass-rate').innerText = '0%';
+                return;
+            }
+
+            let totalScore = 0;
+            let passedCount = 0;
+
+            list.forEach((item, index) => {
+                totalScore += item.score;
+                if (item.score >= 70) passedCount++;
+
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 transition";
+                tr.innerHTML = `
+                    <td class="p-3 font-semibold text-slate-500">${index + 1}</td>
+                    <td class="p-3 font-bold text-slate-800">${item.name}</td>
+                    <td class="p-3 text-slate-600">${item.className}</td>
+                    <td class="p-3 font-extrabold text-madrasah-700">${item.score} / 100</td>
+                    <td class="p-3">
+                        ${item.score >= 70 ? 
+                            '<span class="px-2 py-1 bg-emerald-100 text-emerald-800 rounded-md font-semibold text-[10px]">Tuntas</span>' : 
+                            '<span class="px-2 py-1 bg-rose-100 text-rose-800 rounded-md font-semibold text-[10px]">Perlu Remedial</span>'}
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            document.getElementById('teacher-total-students').innerText = list.length;
+            document.getElementById('teacher-avg-score').innerText = Math.round(totalScore / list.length) + ' / 100';
+            document.getElementById('teacher-pass-rate').innerText = Math.round((passedCount / list.length) * 100) + '%';
+        }
+
+        function clearStudentData() {
+            if (confirm("Apakah Anda yakin ingin menghapus seluruh rekap nilai kuis siswa?")) {
+                localStorage.removeItem('mpi_fiqih_scores');
+                renderTeacherPanel();
+            }
+        }
+
+        // --- 7. INITIALIZATION ON WINDOW LOAD ---
+        window.onload = function() {
+            initDragActivity();
+        };
+    </script>
+</body>
+</html>
